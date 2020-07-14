@@ -1,0 +1,47 @@
+{extend name="extra@base" /}
+{block name="body"}
+<div class="x-body">
+    <table class="layui-table">
+        <thead>
+        <tr>
+            <th width="10"></th>
+            <th width="100">周一</th>
+            <th width="100">周二</th>
+            <th width="100">周三</th>
+            <th width="100">周四</th>
+            <th width="100">周五</th>
+            <th width="100">周六</th>
+            <th width="100">周日</th>
+        </tr>
+        </thead>
+        <tbody>
+        {for start="1" end="9" step="2" name="i"}
+        <tr height="100px">
+            <td>{$i}-{$i+1}</td>
+            {for start="1" end="8" step="1" name="week_day"}
+            <td>{$rows[$i][$week_day]}</td>
+            {/for}
+        </tr>
+        {/for}
+        </tbody>
+    </table>
+
+    <div id="demo0">
+        <div class="layui-box layui-laypage layui-laypage-default" id="layui-laypage-1">
+
+            {for start="1" end="19" step="1"}
+            {if $i == $week_index}
+            <span class="layui-laypage-curr"><em class="layui-laypage-em"></em><em>{$i}</em></span>
+            {else}
+            <a href="/course?week={$i}">{$i}</a>
+            {/if}
+            {/for}
+
+            {if $back_cur_week}
+            <a href="/">返回当前周</a>
+            {/if}
+
+        </div>
+    </div>
+</div>
+{/block}
